@@ -1,0 +1,53 @@
+{
+  "Cars": {
+    "Companies": [
+      {
+        "CompanyGroupId": "212112",
+        "CompanyGroupName": "BMW Group",
+        "GroupCompanies": [
+          {
+            "CompanyINN": "221321321",
+            "CompanyName": "BMW Волгоградский проспект"
+          }
+        ]
+      }
+    ],
+    "Car": [
+      {
+        "ForLoan": "0",
+        "CompanyGroupId": "212112",
+        "CompanyINN": "221321321",
+        "VIN": "465465489645465",
+        "Id": "255505",
+        "Category": "Автомобили",
+        "CarType": "С пробегом",
+        "Accident": "Не битый",
+        "Make": "Land Rover",
+        "Model": "Freelander",
+        "Year": "2004",
+        "Kilometrage": "157000",
+        "BodyType": "Внедорожник",
+        "Transmission": "Механика",
+        "FuelType": "Бензин",
+        "Doors": "5",
+        "Color": "Черный",
+        "EngineSize": "1800",
+        "Price": "400999",
+        "Images": {
+          "CarImage": [
+            {
+              "-url": "https://s3.amazonaws.com/pictures.anno1453/1.png"
+            },
+            {
+              "-url": "https://s3.amazonaws.com/pictures.anno1453/2.jpg"
+            },
+            {
+              "-url": "ссылка на изображение 3"
+            }
+          ]
+        },
+        "Gosnomer": "77POX444"
+      }
+    ]
+  }
+}

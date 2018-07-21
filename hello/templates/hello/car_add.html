@@ -1,0 +1,21 @@
+<!--
+<form enctype="multipart/form-data" method="post" action="/cars/add/">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="OK">
+</form>
+
+<form method="post" action="/cars/add/">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="OK">
+</form>
+-->
+
+<form action="/cars/add/?_csrf={{csrfToken}}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="OK">
+</form>
+
+<a href="/cars/">Назад</a>

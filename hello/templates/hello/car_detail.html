@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Автомобиль №{{ id }} VIN {{ vin }}</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+      integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+<h1>Автомобиль №{{ id }} VIN {{ vin }}</h1>
+<button id="download" type="button" class="btn btn-primary">Скачать в формате Excel</button>
+
+<a href="/cars/">Назад</a>
+
+<ul>
+    {% for image in images %}
+        <li><img src="{{ image.url }}"/></li>
+    {% endfor %}
+</ul>
+<script>
+    $("#download").click(function () {
+        window.location = '/cars/?' + $.param({format: "xlsx", id: [{{ id }}]}, true);
+    });
+</script>
+</body>
+</html>

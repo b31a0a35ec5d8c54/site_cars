@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Автомобили</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+          integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-ru-RU.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/filter-control/bootstrap-table-filter-control.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        function LinkFormatter(value, row, index) {
+            return "<a href='" + value + "'>" + "ссылка" + "</a>";
+        }
+    </script>
+
+</head>
+<body>
+<h1>Автомобили</h1>
+
+<button id="download" type="button" class="btn btn-primary">Скачать в формате Excel</button>
+<a href="/cars/add" class="btn btn-warning" role="button">Добавить автомобиль</a>
+<button id="delete" type="button" class="btn btn-danger">Удалить автомобили</button>
+
+{% if cars %}
+<table id="cars" t1data-pagination="true" data-toggle="table" data-url="/cars.json" data-filter-control="true">
+    <thead>
+    <tr>
+
+        <!--  1 -->   <th data-field="state" data-checkbox="true">Выбран</th>
+        <!--  2 -->   <th data-field="created" data-filter-control="datepicker">Добавлен</th>
+        <!--  3 -->   <th data-field="company">Компания</th>
+        <!--  4 -->   <th data-field="inn">ИНН</th>
+        <!--  5 -->   <th data-field="vin" data-filter-control="input">VIN</th>
+        <!--  6 -->   <th data-field="model">Модель</th>
+        <!--  7 -->   <th data-field="year">Год</th>
+        <!--  8 -->   <th data-field="price">Цена</th>
+        <!--  9 -->   <th data-field="gosnomer">Госномер</th>
+        <!-- 10 -->   <th data-field="imagesurl" data-formatter="LinkFormatter">Изображения</th>
+        <!-- 11 -->   <th data-field="unused">Новый</th>
+        <!-- 12 -->   <th data-field="forloan" data-searchable="true" data-filter-control="select">Для продажи</th>
+
+    </tr>
+    </thead>
+</table>
+{% else %}
+    <div>
+        Список атомобилей пуст
+    </div>
+{% endif %}
+
+<script>
+    $("#download").click(function () {
+        let getSelections = $('#cars').bootstrapTable('getSelections', null);
+        window.location = '/cars/?' + $.param({format: "xlsx", id: getSelections.map(el => el.id)}, true);
+    });
+    $("#delete").click(function () {
+        let getSelections = $('#cars').bootstrapTable('getSelections', null);
+        window.location = '/cars/del?' + $.param({id: getSelections.map(el => el.id)}, true);
+    });
+</script>
+</body>
+</html>
